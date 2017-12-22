@@ -13,6 +13,10 @@ php:
 #      dist: precise
 git:
   depth: 3
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libyaml-dev
+  - sudo apt-get install -y libsyck-dev
 before_script:
 # no need to provide coverage more than once and no need for the speedbump otherwise
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpenv config-rm xdebug.ini || true ; fi
@@ -20,7 +24,7 @@ before_script:
 # no need to test formatting more than once and php_codesniffer does not work with older php
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.2" ]]; then composer remove --dev squizlabs/php_codesniffer ; fi
 # installing syck
-#  - pecl install syck-0.9.3
+  - pecl install syck-0.9.3
 # installing yaml
   - if [[ ${TRAVIS_PHP_VERSION:0:1} != "7" ]]; then pecl install yaml-2.0.2 ; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:1} != "5" ]]; then pecl install yaml-1.3.1 ; fi
