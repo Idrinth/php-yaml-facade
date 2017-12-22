@@ -1,0 +1,43 @@
+<?php
+
+namespace De\Idrinth\Yaml\Test;
+
+use De\Idrinth\Yaml\Yaml;
+
+class YamlTest extends YamlTestCase
+{
+    /**
+     * @test
+     */
+    public function testEncodeToString()
+    {
+        $this->compareWithString(Yaml::encodeToString($this->getTestData()));
+    }
+
+    /**
+     * @test
+     */
+    public function testDecodeFromString()
+    {
+        $this->compareWithData(Yaml::decodeFromString($this->getTestText()));
+    }
+
+    /**
+     * @test
+     */
+    public function testEncodeToFile()
+    {
+        $file = tempnam(sys_get_temp_dir(), str_replace('\\','_',get_class($this)).'.yml');
+        $this->assertTrue(Yaml::encodeToFile($file, $this->getTestData()));
+        $this->compareWithString(file_get_contents($file));
+        @unlink($file);
+    }
+
+    /**
+     * @test
+     */
+    public function testDecodeFromFile()
+    {
+        $this->compareWithData(Yaml::decodeFromFile(__DIR__.DIRECTORY_SEPARATOR.'simple.yml'));
+    }
+}
