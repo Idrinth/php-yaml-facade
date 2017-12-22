@@ -38,7 +38,10 @@ abstract class YamlTestCase extends TestCase
      */
     protected function compareWithString($result)
     {
-        $trimmedResult = trim(preg_replace('/^%YAML.*?\n---\n/', '', $result), "\r\n \t");
+        $trimmedResult = trim(
+            preg_replace('/^(%YAML.*?\n)?---\n/', '', $result),
+            "\r\n \t"
+        );
         $expected = self::$text;
         $this->assertEquals(
             $expected,
