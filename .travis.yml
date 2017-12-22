@@ -19,6 +19,11 @@ before_script:
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then composer remove --dev codacy/coverage ; fi
 # no need to test formatting more than once and php_codesniffer does not work with older php
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.2" ]]; then composer remove --dev squizlabs/php_codesniffer ; fi
+# installing syck
+  - pecl install syck
+# installing yaml
+  - pecl install yaml
+# installing composer
   - composer update
 script:
 # unit tests

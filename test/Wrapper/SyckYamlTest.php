@@ -13,7 +13,9 @@ class SyckYamlTest extends YamlImplementationTest
     protected function setUp()
     {
         parent::setUp();
-        $this->assertTrue(extension_loaded('syck'), "Extension yaml is not loaded");
+        if(!extension_loaded('syck')) {
+            $this->markTestSkipped("Extension syck is not loaded");
+        }
     }
 
     /**

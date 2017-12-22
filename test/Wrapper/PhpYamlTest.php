@@ -13,7 +13,9 @@ class PhpYamlTest extends YamlImplementationTest
     protected function setUp()
     {
         parent::setUp();
-        $this->assertTrue(extension_loaded('yaml'), "Extension yaml is not loaded");
+        if(!extension_loaded('yaml')) {
+            $this->markTestSkipped("Extension yaml is not loaded");
+        }
     }
 
     /**
