@@ -13,28 +13,31 @@ php:
 #      dist: precise
 git:
   depth: 3
+cache:
+  directories:
+    - $HOME/pecl_cache
 addons:
   apt:
     packages:
       - libyaml-dev
-#      - libsyck-dev
 before_script:
 # no need to provide coverage more than once and no need for the speedbump otherwise
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpenv config-rm xdebug.ini || true ; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then composer remove --dev codacy/coverage ; fi
 # no need to test formatting more than once and php_codesniffer does not work with older php
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.2" ]]; then composer remove --dev squizlabs/php_codesniffer ; fi
-# installing syck
-#  - pecl install syck-0.9.3
-# installing yaml
-  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]]; then pecl install yaml-2.0.2 ; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then pecl install yaml-1.3.1 ; fi
 # installing composer
+  - composer require phwoolcon/ci-pecl-cacher
   - composer update
+# installing syck
+#  - vendor/bin/ci-pecl-install syck-0.9.3
+# installing yaml
+  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]]; then vendor/bin/ci-pecl-install yaml-2.0.2 ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then vendor/bin/ci-pecl-install yaml-1.3.1 ; fi
 script:
 # unit tests
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpunit --testdox --bootstrap vendor/autoload.php test/; fi
 # check standards
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then vendor/bin/phpcs -p --standard=PSR2 src tests || true ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then vendor/bin/phpcs -p --standard=PSR2 src test ; fi
 # unit tests + coverage
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && then php vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && then vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
