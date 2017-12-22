@@ -1,16 +1,16 @@
 language: php
 dist: trusty
 php:
-#  - '5.4'
-#  - '5.5'
+  - '5.4'
+  - '5.5'
   - '5.6'
-#  - '7.0'
+  - '7.0'
   - '7.1'
   - '7.2'
-#matrix:
-#  include:
-#    - php: "5.3"
-#      dist: precise
+matrix:
+  include:
+    - php: "5.3"
+      dist: precise
 git:
   depth: 3
 cache:
@@ -30,14 +30,14 @@ before_script:
   - composer require phwoolcon/ci-pecl-cacher
   - composer update
 # installing syck
-#  - vendor/bin/ci-pecl-install syck-0.9.3
+  - vendor/bin/ci-pecl-install syck-0.9.3
 # installing yaml
   - if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]]; then vendor/bin/ci-pecl-install yaml-2.0.2 ; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then vendor/bin/ci-pecl-install yaml-1.3.1 ; fi
 script:
 # unit tests
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpunit --testdox --bootstrap vendor/autoload.php test/; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpunit -v --testdox --bootstrap vendor/autoload.php test/; fi
 # check standards
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then vendor/bin/phpcs -p --standard=PSR2 src test ; fi
 # unit tests + coverage
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && then vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit -v --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && then vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
