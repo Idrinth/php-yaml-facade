@@ -20,14 +20,16 @@ abstract class YamlTestCase extends TestCase
     /**
      * @return string
      */
-    protected function getTestText() {
+    protected function getTestText()
+    {
         return self::$text;
     }
 
     /**
      * @return array
      */
-    protected function getTestData() {
+    protected function getTestData()
+    {
         return self::$data;
     }
 
@@ -36,7 +38,7 @@ abstract class YamlTestCase extends TestCase
      */
     protected function compareWithString($result)
     {
-        $trimmedResult = trim($result, "\r\n \t");
+        $trimmedResult = trim(preg_replace('/^%YAML.*?\n---\n/', '', $result), "\r\n \t");
         $expected = self::$text;
         $this->assertEquals(
             $expected,
@@ -55,6 +57,16 @@ abstract class YamlTestCase extends TestCase
             $expected,
             $result,
             json_encode($expected)." does not match ".json_encode($result)
+        );
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTempFilePath() {
+        return tempnam(
+            sys_get_temp_dir(),
+            str_replace('\\', '_', get_class($this)).microtime().'.yml'
         );
     }
 }

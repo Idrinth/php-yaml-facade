@@ -7,6 +7,7 @@ use De\Idrinth\Yaml\Wrapper\SymphonyYaml;
 
 class SymphonyYamlTest extends YamlImplementationTest
 {
+
     /**
      * @return SymphonyYaml
      */

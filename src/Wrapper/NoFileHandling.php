@@ -1,10 +1,12 @@
 <?php
+
 namespace De\Idrinth\Yaml\Wrapper;
 
 use De\Idrinth\Yaml\YamlImplementation;
 
 abstract class NoFileHandling implements YamlImplementation
 {
+
     /**
      * @param string $file
      * @param object|array $data

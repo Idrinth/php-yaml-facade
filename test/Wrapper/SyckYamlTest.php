@@ -7,13 +7,14 @@ use De\Idrinth\Yaml\Wrapper\SyckYaml;
 
 class SyckYamlTest extends YamlImplementationTest
 {
+
     /**
      * prevents fatals because of missing extension
      */
     protected function setUp()
     {
         parent::setUp();
-        if(!extension_loaded('syck')) {
+        if (!extension_loaded('syck')) {
             $this->markTestSkipped("Extension syck is not loaded");
         }
     }

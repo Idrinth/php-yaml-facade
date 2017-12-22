@@ -6,6 +6,7 @@ use De\Idrinth\Yaml\YamlImplementation;
 
 abstract class YamlImplementationTest extends YamlTestCase
 {
+
     /**
      * @return YamlImplementation
      */
@@ -32,8 +33,11 @@ abstract class YamlImplementationTest extends YamlTestCase
      */
     public function testEncodeToFile()
     {
-        $file = tempnam(sys_get_temp_dir(), str_replace('\\','_',get_class($this)).'.yml');
-        $this->assertTrue($this->getInstance()->encodeToFile($file, $this->getTestData()));
+        $file = $this->getTempFilePath();
+        $this->assertTrue(
+            $this->getInstance()->encodeToFile($file, $this->getTestData()),
+            "Couldn't write file $file"
+        );
         $this->compareWithString(file_get_contents($file));
         @unlink($file);
     }

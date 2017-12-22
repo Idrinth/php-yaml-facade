@@ -1,10 +1,12 @@
 <?php
+
 namespace De\Idrinth\Yaml\Wrapper;
 
 use De\Idrinth\Yaml\YamlImplementation;
 
 class PhpYaml implements YamlImplementation
 {
+
     /**
      * @see http://php.net/manual/de/function.yaml-parse-file.php
      * @see http://php.net/manual/de/function.yaml-parse-url.php
@@ -13,7 +15,7 @@ class PhpYaml implements YamlImplementation
      */
     public function decodeFromFile($file)
     {
-        return preg_match('/^[a-z0-9]+:\/\//', $file)?
+        return preg_match('/^[a-z0-9]+:\/\//', $file) ?
             yaml_parse_uri($file) :
             yaml_parse_file($file);
     }
@@ -46,6 +48,6 @@ class PhpYaml implements YamlImplementation
      */
     public function encodeToString($data)
     {
-        return yaml_emit($data);
+        return yaml_emit($data, YAML_ANY_ENCODING, YAML_LN_BREAK);
     }
 }

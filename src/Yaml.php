@@ -1,4 +1,5 @@
 <?php
+
 namespace De\Idrinth\Yaml;
 
 use De\Idrinth\Yaml\Wrapper\PhpYaml;
@@ -22,8 +23,9 @@ class Yaml
     /**
      * @return YamlImplementation
      */
-    private static function initializeImplementation() {
-        if(extension_loaded('yaml')) {
+    private static function initializeImplementation()
+    {
+        if (extension_loaded('yaml')) {
             return new PhpYaml();
         }
         if (extension_loaded('syck')) {
@@ -35,8 +37,9 @@ class Yaml
     /**
      * @return YamlImplementation
      */
-    private static function getInstance() {
-        if(!self::$instance) {
+    private static function getInstance()
+    {
+        if (!self::$instance) {
             self::$instance = self::initializeImplementation();
         }
         return self::$instance;
@@ -46,7 +49,8 @@ class Yaml
      * @param object|array $data
      * @return string
      */
-    public static function encodeToString($data) {
+    public static function encodeToString($data)
+    {
         return self::getInstance()->encodeToString($data);
     }
 
@@ -54,7 +58,8 @@ class Yaml
      * @param string $string
      * @return array
      */
-    public static function decodeFromString($string) {
+    public static function decodeFromString($string)
+    {
         return self::getInstance()->decodeFromString($string);
     }
 
@@ -62,7 +67,8 @@ class Yaml
      * @param string $file
      * @return array
      */
-    public static function decodeFromFile($file) {
+    public static function decodeFromFile($file)
+    {
         return self::getInstance()->decodeFromFile($file);
     }
 
@@ -71,7 +77,8 @@ class Yaml
      * @param array $data
      * @return boolean
      */
-    public static function encodeToFile($file, $data) {
+    public static function encodeToFile($file, $data)
+    {
         return self::getInstance()->encodeToFile($file, $data);
     }
 }

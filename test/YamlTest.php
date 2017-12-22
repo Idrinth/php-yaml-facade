@@ -6,6 +6,7 @@ use De\Idrinth\Yaml\Yaml;
 
 class YamlTest extends YamlTestCase
 {
+
     /**
      * @test
      */
@@ -27,8 +28,11 @@ class YamlTest extends YamlTestCase
      */
     public function testEncodeToFile()
     {
-        $file = tempnam(sys_get_temp_dir(), str_replace('\\','_',get_class($this)).'.yml');
-        $this->assertTrue(Yaml::encodeToFile($file, $this->getTestData()));
+        $file = $this->getTempFilePath();
+        $this->assertTrue(
+            Yaml::encodeToFile($file, $this->getTestData()),
+            "Couldn't write file $file"
+        );
         $this->compareWithString(file_get_contents($file));
         @unlink($file);
     }

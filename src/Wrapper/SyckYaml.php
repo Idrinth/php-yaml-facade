@@ -1,8 +1,10 @@
 <?php
+
 namespace De\Idrinth\Yaml\Wrapper;
 
 class SyckYaml extends NoFileHandling
 {
+
     /**
      * @see https://github.com/indeyets/syck/blob/master/ext/php/phpext.c#L841
      * @param string $string

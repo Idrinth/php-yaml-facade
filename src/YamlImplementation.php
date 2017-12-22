@@ -1,8 +1,10 @@
 <?php
+
 namespace De\Idrinth\Yaml;
 
 interface YamlImplementation
 {
+
     /**
      * @param string $string
      * @return array
@@ -14,7 +16,7 @@ interface YamlImplementation
      * @return string $string
      */
     public function encodeToString($data);
- 
+
     /**
      * @param string $file
      * @return array

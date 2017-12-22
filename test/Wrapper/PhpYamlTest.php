@@ -7,13 +7,14 @@ use De\Idrinth\Yaml\Wrapper\PhpYaml;
 
 class PhpYamlTest extends YamlImplementationTest
 {
+
     /**
      * prevents fatals because of missing extension
      */
     protected function setUp()
     {
         parent::setUp();
-        if(!extension_loaded('yaml')) {
+        if (!extension_loaded('yaml')) {
             $this->markTestSkipped("Extension yaml is not loaded");
         }
     }

@@ -1,10 +1,12 @@
 <?php
+
 namespace De\Idrinth\Yaml\Wrapper;
 
 use Symfony\Component\Yaml\Yaml;
 
 class SymphonyYaml extends NoFileHandling
 {
+
     /**
      * @see http://api.symfony.com/2.6/Symfony/Component/Yaml/Yaml.html#method_parse
      * @param string $string
