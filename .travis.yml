@@ -15,7 +15,13 @@ git:
   depth: 3
 cache:
   directories:
-    - $HOME/pecl_cache
+    - $HOME/pecl_cache/5.3
+    - $HOME/pecl_cache/5.4
+    - $HOME/pecl_cache/5.5
+    - $HOME/pecl_cache/5.6
+    - $HOME/pecl_cache/7.0
+    - $HOME/pecl_cache/7.1
+    - $HOME/pecl_cache/7.2
 addons:
   apt:
     packages:
@@ -32,10 +38,10 @@ install:
 # installing composer
   - composer update
 # installing syck
-  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then vendor/bin/ci-pecl-install syck-0.9.3 ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then vendor/bin/ci-pecl-install syck-0.9.3 || true ; fi
 # installing yaml
-  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]]; then vendor/bin/ci-pecl-install yaml-2.0.2 ; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then vendor/bin/ci-pecl-install yaml-1.3.1 ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]]; then vendor/bin/ci-pecl-install yaml-2.0.2 || true ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then vendor/bin/ci-pecl-install yaml-1.3.1 || true ; fi
 script:
 # unit tests
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpunit --testdox --bootstrap vendor/autoload.php test/; fi
