@@ -70,7 +70,8 @@ abstract class YamlTestCase extends TestCase
     /**
      * @return string
      */
-    protected function getTempFilePath() {
+    protected function getTempFilePath()
+    {
         return tempnam(
             sys_get_temp_dir(),
             str_replace('\\', '_', get_class($this)).microtime().'.yml'

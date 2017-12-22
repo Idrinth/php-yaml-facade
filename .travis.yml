@@ -20,14 +20,16 @@ addons:
   apt:
     packages:
       - libyaml-dev
-install:
+before_install:
 # no need to provide coverage more than once and no need for the speedbump otherwise
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpenv config-rm xdebug.ini || true ; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then composer require codacy/coverage:dev-master ; fi
 # no need to test formatting more than once and php_codesniffer does not work with older php
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.2" ]]; then composer remove --dev squizlabs/php_codesniffer ; fi
-# installing composer
+# preparing cache
   - composer require phwoolcon/ci-pecl-cacher
+install:
+# installing composer
   - composer update
 # installing syck
   - if [[ ${TRAVIS_PHP_VERSION:0:1} == "5" ]]; then vendor/bin/ci-pecl-install syck-0.9.3 ; fi
@@ -40,4 +42,4 @@ script:
 # check standards
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then vendor/bin/phpcs -p --standard=PSR2 src test ; fi
 # unit tests + coverage
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit --testdox --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
