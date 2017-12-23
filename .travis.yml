@@ -21,7 +21,7 @@ addons:
     packages:
       - libyaml-dev
 before_install:
-  - git clone --depth=1 https://github.com/indeyets/syck.git && cd syck && ./bootstrap && ./configure && make && sudo make install
+  - git clone --depth=1 https://github.com/indeyets/syck.git && cd syck && ./bootstrap && ./configure && make && sudo make install && cd ..
 # no need to provide coverage more than once and no need for the speedbump otherwise
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpenv config-rm xdebug.ini || true ; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then composer require codacy/coverage:dev-master ; fi
