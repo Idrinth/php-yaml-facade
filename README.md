@@ -8,3 +8,13 @@ This library unifies the access to two different php-extensions and the symphony
 - php yaml ( http://php.net/manual/en/book.yaml.php )
 - php syck ( https://github.com/indeyets/syck )
 - symphony/yaml ( https://packagist.org/packages/symfony/yaml )
+
+## Installation
+
+Installation via composer is the proposed way of using this library. It will always use [semantic versioning](http://semver.org).
+
+```
+"require": {
+  "idrinth/yaml-facade": "^1.0"
+}
+```
