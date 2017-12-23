@@ -14,13 +14,6 @@ class Yaml
     private static $instance;
 
     /**
-     */
-    private function __construct()
-    {
-        //This MUST NOT be constructed
-    }
-
-    /**
      * @return YamlImplementation
      */
     private static function initializeImplementation()

@@ -1,5 +1,5 @@
 {
-    "name": "idrinth/yaml",
+    "name": "idrinth/yaml-facade",
     "description": "provides an facade for php-yaml, syck and symphony/yaml so switching in between is easier",
     "homepage": "https://github.com/idrinth/php-yaml-facade/",
     "license": "MIT",
