@@ -21,7 +21,7 @@ addons:
     packages:
       - libyaml-dev
       - alien
-      - dkg-dev
+      - dpkg-dev
       - debhelper
       - build-essential
 before_install:
