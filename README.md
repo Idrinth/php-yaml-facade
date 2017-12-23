@@ -9,6 +9,10 @@ This library unifies the access to two different php-extensions and the symphony
 - php syck ( https://github.com/indeyets/syck )
 - symphony/yaml ( https://packagist.org/packages/symfony/yaml )
 
+## Low Coverage
+
+Currently building the syck library fails on travis, so the related code can not be tested and tests are skipped.
+
 ## Installation
 
 Installation via composer is the proposed way of using this library. It will always use [semantic versioning](http://semver.org).
