@@ -25,7 +25,7 @@ addons:
       - debhelper
       - build-essential
 before_install:
-  - wget http://dl.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/os/Packages/s/syck-0.70-7.20130402.fc24.i686.rpm && alien syck*.rpm && dpkg -i syck*.deb
+  - wget http://dl.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/os/Packages/s/syck-0.70-7.20130402.fc24.i686.rpm && sudo alien syck*.rpm && sudo dpkg -i syck*.deb
 # no need to provide coverage more than once and no need for the speedbump otherwise
   - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.1" ]]; then phpenv config-rm xdebug.ini || true ; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then composer require codacy/coverage:dev-master ; fi
