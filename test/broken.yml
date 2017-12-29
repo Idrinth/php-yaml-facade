@@ -1,0 +1,7 @@
+very:
+    simple-test: true
+        -qq
+    - a
+    aa:
+        a
+        - a:a

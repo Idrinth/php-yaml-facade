@@ -2,6 +2,7 @@
 
 namespace De\Idrinth\Yaml\Wrapper;
 
+use De\Idrinth\Yaml\YamlException;
 use De\Idrinth\Yaml\YamlImplementation;
 
 abstract class NoFileHandling implements YamlImplementation
@@ -20,6 +21,7 @@ abstract class NoFileHandling implements YamlImplementation
     /**
      * @param string $file
      * @return array
+     * @throws YamlException
      */
     public function decodeFromFile($file)
     {
