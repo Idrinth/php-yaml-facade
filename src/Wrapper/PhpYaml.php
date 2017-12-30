@@ -18,11 +18,10 @@ class PhpYaml implements YamlImplementation
     public function decodeFromFile($file)
     {
         $result = preg_match('/^[a-z0-9]+:\/\//', $file) ?
-            yaml_parse_uri($file) :
-            yaml_parse_file($file);
-        var_dump($result);
+            @yaml_parse_uri($file) :
+            @yaml_parse_file($file);
         if (!is_array($result)) {
-            throw new YamlException("Failed to parse file.");
+            throw new YamlException("Failed to parse file: ".json_encode(error_get_last()));
         }
         return $result;
     }
@@ -35,9 +34,9 @@ class PhpYaml implements YamlImplementation
      */
     public function decodeFromString($string)
     {
-        $result = yaml_parse($string);
+        $result = @yaml_parse($string);
         if (!is_array($result)) {
-            throw new YamlException("Failed to parse string.");
+            throw new YamlException("Failed to parse string: ".json_encode(error_get_last()));
         }
         return $result;
     }

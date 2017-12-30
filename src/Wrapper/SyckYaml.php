@@ -15,9 +15,10 @@ class SyckYaml extends NoFileHandling
      */
     public function decodeFromString($string)
     {
-        $result = syck_load($string);
+        error_clear_last();
+        $result = @syck_load($string);
         if (!is_array($result)) {
-            throw new YamlException("Failed to parse string.");
+            throw new YamlException("Failed to parse string: ".json_encode(error_get_last()));
         }
         return $result;
     }
