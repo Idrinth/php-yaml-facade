@@ -9,7 +9,8 @@ abstract class YamlTestCase extends TestCase
     /**
      * @var string
      */
-    private static $text = "very:\n  simple-test: true";
+    private static $text = "very:
+  simple-test: true";
 
     /**
      * @var string
@@ -23,7 +24,9 @@ abstract class YamlTestCase extends TestCase
         - a:a
 - my
     - gg: a
-        - u";
+        - u:
+- - - qqq
+    - -: a";
 
     /**
      * @var array

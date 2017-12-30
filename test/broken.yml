@@ -7,4 +7,6 @@ very:
         - a:a
 - my
     - gg: a
-        - u
+        - u:
+- - - qqq
+    - -: a
