@@ -20,6 +20,7 @@ class PhpYaml implements YamlImplementation
         $result = preg_match('/^[a-z0-9]+:\/\//', $file) ?
             yaml_parse_uri($file) :
             yaml_parse_file($file);
+        var_dump($result);
         if (!is_array($result)) {
             throw new YamlException("Failed to parse file.");
         }
