@@ -19,7 +19,7 @@ class SymphonyYaml extends NoFileHandling
     {
         try {
             $result = Yaml::parse($string);
-            if(!is_array($result)) {
+            if (!is_array($result)) {
                 throw new YamlException("Failed to parse string.");
             }
             return $result;
