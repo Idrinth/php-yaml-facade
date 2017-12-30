@@ -13,9 +13,6 @@ matrix:
       dist: precise
 git:
   depth: 3
-cache:
-  directories:
-    - $HOME/pecl_cache
 addons:
   apt:
     packages:
