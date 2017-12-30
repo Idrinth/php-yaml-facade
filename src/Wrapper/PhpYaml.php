@@ -28,7 +28,7 @@ class PhpYaml implements YamlImplementation
 
     /**
      * @see http://php.net/manual/de/function.yaml-parse.php
-     * @param type $string
+     * @param string $string
      * @return array
      * @throws YamlException
      */
