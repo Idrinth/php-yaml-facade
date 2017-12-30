@@ -16,8 +16,8 @@ class SyckYaml extends NoFileHandling
     public function decodeFromString($string)
     {
         $result = syck_load($string);
-        if($result === null) {
-            throw new YamlException("Failed to parse file.");
+        if (!is_array($result)) {
+            throw new YamlException("Failed to parse string.");
         }
         return $result;
     }

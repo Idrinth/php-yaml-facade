@@ -18,9 +18,15 @@ class SymphonyYaml extends NoFileHandling
     public function decodeFromString($string)
     {
         try {
-            return Yaml::parse($string);
-        } catch(Exception $exception) {
-            throw new YamlException($exception->getMessage(), $exception);
+            $result = Yaml::parse($string);
+            if(!is_array($result)) {
+                throw new YamlException("Failed to parse string.");
+            }
+            return $result;
+        } catch (Exception $exception) {
+            throw $exception instanceof YamlException ?
+                $exception :
+                new YamlException($exception->getMessage(), $exception);
         }
     }
 

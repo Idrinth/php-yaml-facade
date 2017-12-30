@@ -14,5 +14,4 @@ class YamlException extends RuntimeException
     {
         parent::__construct($message, 0, $previous);
     }
-
 }

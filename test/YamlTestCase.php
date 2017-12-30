@@ -14,7 +14,7 @@ abstract class YamlTestCase extends TestCase
     /**
      * @var string
      */
-    private static $broken = "broken:\n  - a: o\n- qq\n  b: u";
+    private static $broken = "very:\n    simple-test: true\n        -qq\n    - a\n    aa:\n        a\n        - a:a\n- my\n    - gg: a\n        - u";
 
     /**
      * @var array
