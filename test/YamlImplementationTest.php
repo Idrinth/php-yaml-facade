@@ -34,7 +34,7 @@ abstract class YamlImplementationTest extends YamlTestCase
      */
     public function testDecodeFromBrokenString()
     {
-        $this->compareWithData($this->getInstance()->decodeFromString($this->getTestBroken()));
+        $this->getInstance()->decodeFromString($this->getTestBroken());
     }
 
     /**
@@ -65,6 +65,6 @@ abstract class YamlImplementationTest extends YamlTestCase
      */
     public function testDecodeFromBrokenFile()
     {
-        $this->compareWithData($this->getInstance()->decodeFromFile(__DIR__.DIRECTORY_SEPARATOR.'broken.yml'));
+        $this->getInstance()->decodeFromFile(__DIR__.DIRECTORY_SEPARATOR.'broken.yml');
     }
 }

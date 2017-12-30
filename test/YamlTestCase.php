@@ -22,7 +22,7 @@ abstract class YamlTestCase extends TestCase
     aa:
         a
         - a:a
-- my
+- my - qq
     - gg: a
         - u:
 - - - qqq
