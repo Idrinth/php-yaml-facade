@@ -41,4 +41,4 @@ script:
 # check standards
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then vendor/bin/phpcs -p --standard=PSR2 src test ; fi
 # unit tests + coverage
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit --testdox --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then phpunit --testdox -vvv --coverage-text --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php --whitelist src/ test/ && vendor/bin/codacycoverage clover build/logs/clover.xml ; fi
