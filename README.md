@@ -10,7 +10,7 @@ This library unifies the access to two different php-extensions and the symphony
 
 - php yaml ( http://php.net/manual/en/book.yaml.php )
 - php syck ( https://github.com/indeyets/syck )
-- symphony/yaml ( https://packagist.org/packages/symfony/yaml )
+- symfony/yaml ( https://packagist.org/packages/symfony/yaml )
 
 ## Limitations
 
