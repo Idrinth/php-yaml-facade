@@ -30,7 +30,7 @@ class Yaml
     /**
      * @return YamlImplementation
      */
-    private static function getInstance()
+    public static function getInstance()
     {
         if (!self::$instance) {
             self::$instance = self::initializeImplementation();
