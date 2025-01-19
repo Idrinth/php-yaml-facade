@@ -7,23 +7,15 @@ use De\Idrinth\Yaml\YamlImplementation;
 
 abstract class NoFileHandling implements YamlImplementation
 {
-
-    /**
-     * @param string $file
-     * @param object|array $data
-     * @return boolean
-     */
-    public function encodeToFile($file, $data)
+    public function encodeToFile(string $file, array|object $data): bool
     {
         return file_put_contents($file, $this->encodeToString($data)) !== false;
     }
 
     /**
-     * @param string $file
-     * @return array
      * @throws YamlException
      */
-    public function decodeFromFile($file)
+    public function decodeFromFile(string $file): array
     {
         return $this->decodeFromString(file_get_contents($file));
     }

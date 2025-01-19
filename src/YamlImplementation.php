@@ -4,29 +4,11 @@ namespace De\Idrinth\Yaml;
 
 interface YamlImplementation
 {
+    public function decodeFromString(string $string): array;
 
-    /**
-     * @param string $string
-     * @return array
-     */
-    public function decodeFromString($string);
+    public function encodeToString(array|object $data): string;
 
-    /**
-     * @param array|object $data
-     * @return string $string
-     */
-    public function encodeToString($data);
+    public function decodeFromFile(string $file): array;
 
-    /**
-     * @param string $file
-     * @return array
-     */
-    public function decodeFromFile($file);
-
-    /**
-     * @param string $file
-     * @param array|object $data
-     * @return boolean
-     */
-    public function encodeToFile($file, $data);
+    public function encodeToFile(string $file, array|object $data): bool;
 }

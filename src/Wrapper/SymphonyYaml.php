@@ -11,11 +11,9 @@ class SymphonyYaml extends NoFileHandling
 
     /**
      * @see http://api.symfony.com/2.6/Symfony/Component/Yaml/Yaml.html#method_parse
-     * @param string $string
-     * @return array
      * @throws YamlException
      */
-    public function decodeFromString($string)
+    public function decodeFromString(string $string): array
     {
         try {
             $result = Yaml::parse($string);
@@ -32,10 +30,8 @@ class SymphonyYaml extends NoFileHandling
 
     /**
      * @see http://api.symfony.com/2.6/Symfony/Component/Yaml/Yaml.html#method_dump
-     * @param object|array $data
-     * @return string
      */
-    public function encodeToString($data)
+    public function encodeToString(object|array $data): string
     {
         return Yaml::dump($data, 2, 2);
     }

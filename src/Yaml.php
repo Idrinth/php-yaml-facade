@@ -8,15 +8,9 @@ use De\Idrinth\Yaml\Wrapper\SymphonyYaml;
 
 class Yaml
 {
-    /**
-     * @var YamlImplementation
-     */
-    private static $instance;
+    private static YamlImplementation $instance;
 
-    /**
-     * @return YamlImplementation
-     */
-    private static function initializeImplementation()
+    private static function initializeImplementation(): YamlImplementation
     {
         if (extension_loaded('yaml')) {
             return new PhpYaml();
@@ -27,10 +21,7 @@ class Yaml
         return new SymphonyYaml();
     }
 
-    /**
-     * @return YamlImplementation
-     */
-    public static function getInstance()
+    public static function getInstance(): YamlImplementation
     {
         if (!self::$instance) {
             self::$instance = self::initializeImplementation();
@@ -38,39 +29,22 @@ class Yaml
         return self::$instance;
     }
 
-    /**
-     * @param object|array $data
-     * @return string
-     */
-    public static function encodeToString($data)
+    public static function encodeToString(object|array $data): string
     {
         return self::getInstance()->encodeToString($data);
     }
 
-    /**
-     * @param string $string
-     * @return array
-     */
-    public static function decodeFromString($string)
+    public static function decodeFromString(string $string): array
     {
         return self::getInstance()->decodeFromString($string);
     }
 
-    /**
-     * @param string $file
-     * @return array
-     */
-    public static function decodeFromFile($file)
+    public static function decodeFromFile(string $file): array
     {
         return self::getInstance()->decodeFromFile($file);
     }
 
-    /**
-     * @param string $file
-     * @param array $data
-     * @return boolean
-     */
-    public static function encodeToFile($file, $data)
+    public static function encodeToFile(string $file, array|object $data): bool
     {
         return self::getInstance()->encodeToFile($file, $data);
     }

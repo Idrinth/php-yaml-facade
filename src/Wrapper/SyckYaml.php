@@ -9,11 +9,9 @@ class SyckYaml extends NoFileHandling
 
     /**
      * @see https://github.com/indeyets/syck/blob/master/ext/php/phpext.c#L841
-     * @param string $string
-     * @return array
      * @throws YamlException
      */
-    public function decodeFromString($string)
+    public function decodeFromString(string $string): array
     {
         error_clear_last();
         $result = @syck_load($string);
@@ -25,10 +23,8 @@ class SyckYaml extends NoFileHandling
 
     /**
      * @see https://github.com/indeyets/syck/blob/master/ext/php/phpext.c#L891
-     * @param object|array $data
-     * @return string
      */
-    public function encodeToString($data)
+    public function encodeToString(object|array $data): string
     {
         return syck_dump($data);
     }

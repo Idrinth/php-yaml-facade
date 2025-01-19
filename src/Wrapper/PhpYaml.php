@@ -11,11 +11,9 @@ class PhpYaml implements YamlImplementation
     /**
      * @see http://php.net/manual/de/function.yaml-parse-file.php
      * @see http://php.net/manual/de/function.yaml-parse-url.php
-     * @param string $file
-     * @return array
      * @throws YamlException
      */
-    public function decodeFromFile($file)
+    public function decodeFromFile(string $file): array
     {
         $result = preg_match('/^[a-z0-9]+:\/\//', $file) ?
             @yaml_parse_uri($file) :
@@ -28,11 +26,9 @@ class PhpYaml implements YamlImplementation
 
     /**
      * @see http://php.net/manual/de/function.yaml-parse.php
-     * @param string $string
-     * @return array
      * @throws YamlException
      */
-    public function decodeFromString($string)
+    public function decodeFromString(string $string): array
     {
         $result = @yaml_parse($string);
         if (!is_array($result)) {
@@ -43,21 +39,16 @@ class PhpYaml implements YamlImplementation
 
     /**
      * @see http://php.net/manual/de/function.yaml-emit-file.php
-     * @param string $file
-     * @param object|array $data
-     * @return boolean
      */
-    public function encodeToFile($file, $data)
+    public function encodeToFile(string $file, object|array $data): bool
     {
         return yaml_emit_file($file, $data);
     }
 
     /**
      * @see http://php.net/manual/de/function.yaml-emit.php
-     * @param object|array $data
-     * @return string
      */
-    public function encodeToString($data)
+    public function encodeToString(object|array $data): string
     {
         return yaml_emit($data, YAML_ANY_ENCODING, YAML_LN_BREAK);
     }
